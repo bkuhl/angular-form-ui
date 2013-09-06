@@ -1,0 +1,31 @@
+{
+  "name": "angular-form-ui",
+  "version": "0.1.0",
+  "homepage": "http://bkuhl.github.io/angular-form-ui/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bkuhl/angular-form-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bkuhl/angular-form-ui/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/bkuhl/angular-form-ui/blob/master/LICENSE"
+    }
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "matchdep": "~0.1.2",
+    "karma": "~0.8.5",
+    "grunt-karma": "~0.4.4",
+    "grunt-contrib-jshint": "~0.6.3",
+    "grunt-contrib-watch": "~0.5.2",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-qunit": "~0.2.2",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-copy": "~0.4.1"
+  }
+}
