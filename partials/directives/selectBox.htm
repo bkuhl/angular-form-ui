@@ -1,0 +1,31 @@
+<h1>selectBox <a class='btn btn-default docLink' target='_blank' href='https://github.com/bkuhl/angular-form-ui/tree/master/src/directives/selectBox'>Go to documentation</a></h1>
+<div class="row">
+    <div class="col col-lg-6">
+        <p>This directive gives developers a fancy way to present select boxes.</p>
+        <div style="background-color: {{ selectedValue.hexCode }}; color: #fff; text-align: center; padding: 2px">{{ selectedValue.hexCode }}</div><br/>
+        <select-box ng-model="selectedValue" optExp="t.name for t in options"></select-box>
+    </div>
+    <div class="col col-lg-6">
+        <h3>Javascript</h3>
+<pre class="prettyprint nocode">
+controller('ExampleController', function ($scope) {
+    $scope.options = [{
+        name: 'Blue',
+        hexCode: '#0000ff'
+    },{
+        name: 'Red',
+        hexCode: '#C41A16'
+    },{
+        name: 'Purple',
+        hexCode: '#AA0D91'
+    }];
+    $scope.selectedValue;
+});
+</pre>
+        <h3>HTML</h3>
+<pre class="prettyprint nocode">
+&lt;select-box ng-model="selectedValue" optExp="t.name for t in options"&gt;&lt;/select-box&gt;
+</pre>
+    </div>
+</div>
+<div disqus="'directives-select-box'"></div>
