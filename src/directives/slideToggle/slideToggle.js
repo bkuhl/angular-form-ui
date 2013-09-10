@@ -1,12 +1,13 @@
 angular.module('angular-form-ui').
-    /**
-     * <slide-toggle ng-model="[expression]"></slide-toggle>
-     * Required attribute: ng-model="[expression]"
-     * Optional attribute: onlabel="xxxx" (defaults to "On")
-     * Optional attribute: offlabel="xxxx" (defaults to "Off")
-     * Optional attribute: on="function"
-     * Optional attribute: off="function"
-     */
+/**
+ * <slide-toggle ng-model="[expression]"></slide-toggle>
+ * Required attribute: ng-model="[expression]"
+ * Optional attribute: on-label="xxxx" (defaults to "On")
+ * Optional attribute: off-label="xxxx" (defaults to "Off")
+ * Optional attribute: on="function"
+ * Optional attribute: off="function"
+ * Optional attribute: disable-triggers-on-watch
+ */
     directive('slideToggle', ['$timeout', function ($timeout) {
         return {
             replace: true,
@@ -15,32 +16,33 @@ angular.module('angular-form-ui').
             require: '^ngModel',
             template: function (el, attrs) {
                 attrs = angular.extend({
-                    onlabel: "On",
-                    offlabel: "Off"
+                    onLabel: "On",
+                    offLabel: "Off"
                 }, attrs);
 
                 var html =
                     '<div class="ngSlideToggle"' + ((angular.isDefined(attrs.class)) ? ' class="'+attrs.class+'"' : '') + ' ng-class="attrs.ngModel ? \'on\' : \'off\'">'+
                         '<input type="checkbox" ng-model="' + attrs.ngModel + '"' + ((angular.isDefined(attrs.id)) ? ' id="'+attrs.id+'"' : '') + '' + ((angular.isDefined(attrs.name)) ? ' name="'+attrs.name+'"' : '') + '/>' +
                         '<div class="stSlide">'+
-                            '<span class="stOn">' + attrs.onlabel + '</span>'+
+                            '<span class="stOn">' + attrs.onLabel + '</span>'+
                             '<span class="stHandle">| | |</span>'+
-                            '<span class="stOff">' + attrs.offlabel + '</span>'+
+                            '<span class="stOff">' + attrs.offLabel + '</span>'+
                         '</div>'+
                     '</div>';
                 return html;
             },
             link: function (scope, el, attrs, ctrl) {
                 var
-                    intialized = false,
+                    initialized = false,
                     container = el[0],
                     slide,
                     onLabel,
                     handle,
                     offLabel,
                     labelWidth, //the width of both labels
-                    on = function () {
-                        if (intialized === true && angular.isDefined(attrs.on)) {
+                    disableTriggersOnWatch = angular.isDefined(attrs.disableTriggersOnWatch),
+                    on = function (skipOnFunc) {
+                        if (initialized === true && angular.isDefined(attrs.on) && (angular.isUndefined(skipOnFunc) || skipOnFunc !== true)) {
                             var onFunc = scope.$eval(attrs.on);
                             if (angular.isFunction(onFunc)) {
                                 onFunc();
@@ -48,8 +50,8 @@ angular.module('angular-form-ui').
                         }
                         slide.style.marginLeft = "0px";
                     },
-                    off = function () {
-                        if (intialized === true && angular.isDefined(attrs.off)) {
+                    off = function (skipOffFunc) {
+                        if (initialized === true && angular.isDefined(attrs.off) && (angular.isUndefined(skipOffFunc) || skipOffFunc !== true)) {
                             var offFunc = scope.$eval(attrs.off);
                             if (angular.isFunction(offFunc)) {
                                 offFunc();
@@ -61,7 +63,18 @@ angular.module('angular-form-ui').
                 //toggle the value when clicked
                 el.bind('click', function () {
                     scope.$apply(function () {
-                        ctrl.$setViewValue(!ctrl.$viewValue);
+                        var newValue = !ctrl.$viewValue;
+
+                        //if not watching the model value, we should trigger these when the user clicks, otherwise $watch will do it
+                        if (disableTriggersOnWatch) {
+                            if (newValue) {
+                                on();
+                            } else {
+                                off();
+                            }
+                        }
+
+                        ctrl.$setViewValue(newValue);
                     });
                 });
 
@@ -93,7 +106,7 @@ angular.module('angular-form-ui').
                         onLabel.style.width = (labelWidth - getXPadding(offLabel)) + 'px';
                     }
 
-                    //set the initial value
+                    //set the triggers based on view value - only if we're watching the value
                     if (ctrl.$viewValue) {
                         on();
                     } else {
@@ -109,16 +122,12 @@ angular.module('angular-form-ui').
                     slide.style.transition = transitionCache;
 
                     //change button when value changes
+                    initialized = true;
                     scope.$watch(attrs.ngModel, function (newValue, oldValue) {
-                        //Allow the script to see once it's been initialized
-                        if (newValue != oldValue) {
-                            intialized = true;
-                        }
-
                         if (newValue) {
-                            on();
+                            on(disableTriggersOnWatch);
                         } else {
-                            off();
+                            off(disableTriggersOnWatch);
                         }
                     });
                 }, 0);
