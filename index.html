@@ -21,12 +21,12 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/prettify.css">
     <link rel="stylesheet" href="css/docs.css">
-    <link href="https://rawgithub.com/bkuhl/angular-form-ui/master/dist/angular-form-ui.css" rel="stylesheet">
+    <link href="https://rawgithub.com/bkuhl/angular-form-ui/master/release/angular-form-ui.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="js/angular-disqus.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="https://rawgithub.com/bkuhl/angular-form-ui/master/dist/angular-form-ui.js"></script>
+    <script src="https://rawgithub.com/bkuhl/angular-form-ui/master/release/angular-form-ui.js"></script>
     <script src="js/google-code-prettify/prettify.js"></script>
 </head>
 <body ng-app="angular-form-ui-pages" ng-controller="IndexCtrl">
@@ -39,6 +39,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Directives <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="#!/focus-me/">focusMe</a></li>
+                        <li><a href="#!/busy-button/">busyButton</a></li>
                         <li class="nav-header">Elements</li>
                         <li><a href="#!/slide-toggle/">slideToggle</a></li>
                         <li><a href="#!/select-box/">selectBox</a></li>
@@ -107,6 +108,19 @@
                             controller: function ($scope) {
                                 $scope.slideToggleOnOff = true;
                                 $scope.slideToggleActiveInactve = true;
+                            }
+                        })
+                        .when('/busy-button', {
+                            templateUrl: 'partials/directives/busyButton.htm',
+                            controller: function ($scope, $q, $timeout) {
+                                $scope.save = function () {
+                                    var deferred = $q.defer();
+                                    $timeout(function () {
+                                        //do something here
+                                        deferred.resolve();
+                                    }, 2000);
+                                    return deferred.promise;
+                                }
                             }
                         })
                         .otherwise({ redirectTo: '/' })

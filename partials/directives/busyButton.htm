@@ -1,0 +1,31 @@
+<h1>busyButton <a class='btn btn-default docLink' target='_blank' href='https://github.com/bkuhl/angular-form-ui/tree/master/src/directives/busyButton'>Go to documentation</a></h1>
+<div class="row">
+    <div class="col col-lg-6">
+        <p>This directive provides 2 key elements every Angular application needs:</p>
+        <ul>
+            <li>Communicates to the user that the application is busy</li>
+            <li>Prevents multiple calls to <code>ngClick</code> while application is busy</li>
+        </ul>
+        <br/>
+        <button busy-button busy-text="Saving..." ng-click="save()">Click me!</button>
+    </div>
+    <div class="col col-lg-6">
+        <h3>HTML</h3>
+<pre class="prettyprint nocode">
+&lt;button busy-button busy-text="Saving..." ng-click="save()"&gt;Click me!&lt;button&gt;
+</pre>
+
+        <h3>Javascript</h3>
+<pre class="prettyprint nocode">
+$scope.save = function () {
+    var deferred = $q.defer();
+    $timeout(function () {
+        //do something here
+        deferred.resolve();
+    }, 2000);
+    return deferred.promise;
+}
+</pre>
+    </div>
+</div>
+<div disqus="'directives-busy-button'"></div>
