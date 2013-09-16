@@ -4,55 +4,50 @@
 angular.module('angular-form-ui', []);
 angular.module('angular-form-ui').
     /**
-     * <button busy-button="Saving..." ng-click="save()">Save</button>
+     * <button busy-button busy-text="Saving..." ng-click="save()">Save</button>
      * Required attribute: ng-click="[expression]"
+     * Optional attribute: busy-text="[string]"
      */
     directive('busyButton', function () {
         return {
             restrict: 'A',
-            controller: ['$scope', function ($scope) {
+            controller: ['$scope', '$element', function ($scope, $element) {
                 $scope.busy = false;
                 $scope.isBusy = function () {
                     return $scope.busy;
                 };
             }],
             link: function (scope, el, attrs) {
-                if (angular.isUndefined(attrs.ngClick)) {
-                    throw new Error("busyButton must be used in conjunction with ngClick");
-                }
-
                 //with click events, handle "busy" status
-                var functionName = "callback"+Math.floor(Math.random() * 10001),//use a random method name, so there can be more than 1 on the same page
-                    onClick = attrs.ngClick, //cache ngClick so attrs.$set doesn't override it
-                    config = {
-                        busyText: attrs.busyButton
-                    },
-                    originalText = el.text(),
-                    busyCheck = 'isBusy()';
-
+                var functionName = "callback"+Math.floor(Math.random() * 10001),
+                    onClick = attrs.ngClick;
                 //wrap onClick so we can enable "busy" status
                 scope[functionName] = function () {
                     //if it's already busy, don't accept a new click
-                    if (scope.$eval(busyCheck) === true) {
+                    if (scope.busy === true) {
                         return;
                     }
 
                     scope.busy = true;
-                    var func = scope.$eval(onClick);
-                    if (angular.isUndefined(func) || !angular.isObject(func) || !func.hasOwnProperty("then")) {
-                        throw new Error("busyButton's ngClick method must return a promise");
+                    var ret = scope.$eval(onClick);
+                    if (angular.isDefined(ret) && ret.hasOwnProperty('then')) {
+                        ret.then(function () {
+                            scope.busy = false;
+                        });
                     }
-                    func.then(function () {
-                        scope.busy = false;
-                    });
                 };
 
                 if (angular.isDefined(attrs.ngClick)) {
                     attrs.$set('ngClick', functionName + '()');
                 }
 
+                var config = {
+                        busyText: attrs.busyText
+                    },
+                    originalText;
+
                 //when system isBusy
-                scope.$watch(busyCheck, function (newValue) {
+                scope.$watch('isBusy()', function (newValue) {
                     //add/remove disabled class when no additional clicks are accepted
                     if (newValue === true) {
                         el.addClass('disabled');
@@ -61,8 +56,9 @@ angular.module('angular-form-ui').
                     }
 
                     //update the text
-                    if (angular.isDefined(config.busyText) && config.busyText.length > 0) {
+                    if (angular.isDefined(config.busyText)) {
                         if (newValue === true) {
+                            originalText = el.text();
                             el.text(config.busyText);
                         } else {
                             el.text(originalText);

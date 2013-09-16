@@ -7,7 +7,7 @@ files = [
     'http://code.angularjs.org/1.1.5/angular-mocks.js',
 
     // The library itself
-    'dist/angular-form-ui.js',
+    'release/angular-form-ui.js',
 
     'tests/**.spec.js'
 ];
