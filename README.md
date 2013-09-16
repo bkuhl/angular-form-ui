@@ -1,6 +1,8 @@
 #angular-form-ui  [![Build Status](https://travis-ci.org/bkuhl/angular-form-ui.png?branch=master)](https://travis-ci.org/bkuhl/angular-form-ui) [![devDependency Status](https://david-dm.org/bkuhl/angular-form-ui/dev-status.png)](https://david-dm.org/bkuhl/angular-form-ui#info=devDependencies)
 > Make your forms beautiful
 
+Current version: 0.2.0
+
 ## Features
 
 * `selectBox` directive for styled select boxes
