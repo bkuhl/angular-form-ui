@@ -4,7 +4,7 @@ Prevents ng-clicks from being process multiple times while a promise is yet to b
 
 ## Usage
 
-    <button busy-button="Saving..." ng-click="save()">Save</button>
+    <button busy-button ng-click="save()">Save</button>
 
 ### Options
 
