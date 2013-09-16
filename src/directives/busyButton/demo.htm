@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="form-ui-examples">
+<head>
+    <title>angular-form-ui Examples</title>
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+    <script src="../../angular-form-ui.js"></script>
+    <script src="busyButton.js"></script>
+    <script type="text/javascript">
+        angular.module('form-ui-examples', ['angular-form-ui']).
+
+        controller('PromiseExampleController', function ($scope, $timeout, $q) {
+            $scope.save = function () {
+                var deferred = $q.defer();
+                $timeout(function () {
+                    //do something here
+                    deferred.resolve();
+                }, 2000);
+                return deferred.promise;
+            }
+            $scope.saveNoPromise = function () {
+                $timeout(function () {
+                    $scope.busy = false;
+                }, 2000);
+            }
+        }).
+
+        controller('NoPromiseExampleController', function ($scope, $timeout, $q) {
+            $scope.save = function () {
+                var deferred = $q.defer();
+                $timeout(function () {
+                    //do something here
+                    deferred.resolve();
+                }, 2000);
+                return deferred.promise;
+            }
+            $scope.saveNoPromise = function () {
+                $timeout(function () {
+                    $scope.busy = false;
+                }, 2000);
+            }
+        });
+    </script>
+    <style type="text/css">
+        .divider { height: 40px; }
+        .directive:not(.first) { margin-top: 2em;}
+    </style>
+</head>
+<body>
+<div class='container'>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class='directive'>busyButton</h3>
+            <p>Handling of the "busy" status of a form button, communicating to the user the system is "working" and won't process additional <code>ng-click</code> events.  "busy" state is determined by <code>$scope.isBusy()</code> which refers to <code>$scope.busy</code></p>
+        </div>
+    </div>
+    <div class="row" ng-controller="PromiseExampleController">
+        <div class="col-md-12">
+            <h3>With promises</h3>
+        </div>
+        <div class="col-md-9 highlight">
+            <pre>//javascript
+controller('ExampleController', function ($scope, $timeout, $q) {
+    $scope.save = function () {
+        var deferred = $q.defer();
+        $timeout(function () {
+            //do something here
+            deferred.resolve();
+        }, 2000);
+        return deferred.promise;
+    }
+});
+
+//html
+&lt;button busy-button busy-text="Saving..." ng-click="save()"&gt;&lt;/button&gt;</pre>
+        </div>
+        <div class="col-md-3">
+            <button busy-button busy-text="Saving..." ng-click="save()">Save</button>
+        </div>
+    </div>
+    <div class="row" ng-controller="NoPromiseExampleController">
+        <div class="col-md-12">
+            <h3>Without promises</h3>
+        </div>
+        <div class="col-md-9 highlight">
+            <pre>//javascript
+controller('ExampleController', function ($scope, $timeout, $q) {
+    $scope.saveNoPromise = function () {
+        $timeout(function () {
+            $scope.busy = false;
+        }, 2000);
+    }
+});
+
+//html
+&lt;button busy-button busy-text="Saving..." ng-click="save()"&gt;&lt;/button&gt;</pre>
+        </div>
+        <div class="col-md-3">
+            <button busy-button busy-text="Saving..." ng-click="saveNoPromise()">Save</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

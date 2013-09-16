@@ -9,11 +9,11 @@ module.exports = function(grunt) {
             },
             js: {
                 src: ['src/angular-form-ui.js', 'src/directives/**/*.js'],
-                dest: 'dist/<%= pkg.name %>.js'
+                dest: 'release/<%= pkg.name %>.js'
             },
             css: {
                 src: 'src/**/*.css',
-                dest: 'dist/<%= pkg.name %>.css'
+                dest: 'release/<%= pkg.name %>.css'
             }
         },
         uglify: {
@@ -24,7 +24,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: {
-                    'dist/<%= pkg.name %>.min.js': ['<%= concat.js.dest %>']
+                    'release/<%= pkg.name %>.min.js': ['<%= concat.js.dest %>']
                 }
             }
         },
@@ -37,7 +37,7 @@ module.exports = function(grunt) {
             images: {
                 expand: true,
                 src: 'src/**/images/*',
-                dest: 'dist/images/',
+                dest: 'release/images/',
                 flatten: true
             }
         },
