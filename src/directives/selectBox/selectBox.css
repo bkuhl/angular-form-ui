@@ -10,11 +10,7 @@
     -ms-box-sizing: content-box;
 
     background: #fcfcfc;
-    background: -moz-linear-gradient(top, #fcfcfc 0%, #f1f1f1 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fcfcfc), color-stop(100%,#f1f1f1));
-    background: -webkit-linear-gradient(top, #fcfcfc 0%,#f1f1f1 100%);
     background: -o-linear-gradient(top, #fcfcfc 0%,#f1f1f1 100%);
-    background: -ms-linear-gradient(top, #fcfcfc 0%,#f1f1f1 100%);
     background: linear-gradient(top, #fcfcfc 0%,#f1f1f1 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#f1f1f1',GradientType=0 );
 
