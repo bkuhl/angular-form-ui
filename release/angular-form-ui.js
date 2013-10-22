@@ -1,4 +1,4 @@
-/*! angular-form-ui v0.1.0 | https://github.com/bkuhl/angular-form-ui */
+/*! angular-form-ui v0.2.0 | https://github.com/bkuhl/angular-form-ui */
 /*global angular */
 
 angular.module('angular-form-ui', []);
@@ -126,7 +126,7 @@ angular.module('angular-form-ui').
  * Optional attribute: off-label="xxxx" (defaults to "Off")
  * Optional attribute: on="function"
  * Optional attribute: off="function"
- * Optional attribute: disable-triggers-on-watch
+ * Optional attribute: disable-triggers-on-init
  */
     directive('slideToggle', ['$timeout', function ($timeout) {
         return {
@@ -160,7 +160,7 @@ angular.module('angular-form-ui').
                     handle,
                     offLabel,
                     labelWidth, //the width of both labels
-                    disableTriggersOnWatch = angular.isDefined(attrs.disableTriggersOnWatch),
+                    disableTriggersOnInit = angular.isDefined(attrs.disableTriggersOnInit),
                     on = function (skipOnFunc) {
                         if (initialized === true && angular.isDefined(attrs.on) && (angular.isUndefined(skipOnFunc) || skipOnFunc !== true)) {
                             var onFunc = scope.$eval(attrs.on);
@@ -186,7 +186,7 @@ angular.module('angular-form-ui').
                         var newValue = !ctrl.$viewValue;
 
                         //if not watching the model value, we should trigger these when the user clicks, otherwise $watch will do it
-                        if (disableTriggersOnWatch) {
+                        if (disableTriggersOnInit) {
                             if (newValue) {
                                 on();
                             } else {
@@ -245,9 +245,9 @@ angular.module('angular-form-ui').
                     initialized = true;
                     scope.$watch(attrs.ngModel, function (newValue, oldValue) {
                         if (newValue) {
-                            on(disableTriggersOnWatch);
+                            on(disableTriggersOnInit);
                         } else {
-                            off(disableTriggersOnWatch);
+                            off(disableTriggersOnInit);
                         }
                     });
                 }, 0);

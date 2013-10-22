@@ -14,16 +14,19 @@
 
             controller('ExampleController', function ($scope) {
                 $scope.slideToggleOnOff = true;
+
                 $scope.slideToggleActiveInactve = false;
 
+                $scope.slideToggleMethods = true;
+                $scope.slideToggleMethodStatus = "On";
                 $scope.setActive = function () {
                     $scope.slideToggleMethods = true;
                     $scope.slideToggleMethodStatus = "On";
+                    alert("slideToggle is on!");
                 }
                 $scope.setInactive = function () {
                     $scope.slideToggleMethodStatus = "Off";
                 }
-                $scope.setActive();
             });
     </script>
     <style type="text/css">
@@ -63,11 +66,12 @@
     <div class="row">
         <div class="col-md-9">
             <p>You can use the <code>on</code> and <code>off</code> attributes to execute scope methods when the slider enters that state.  This is useful for times where you need more functionality than simply toggling a value.</p>
-            <pre>&lt;slide-toggle on="Active" off="Inactive" ng-model="slideToggleActiveInactve"&gt;&lt;slide-toggle&gt;</pre>
+            <pre>&lt;slide-toggle on="Active" off="Inactive" ng-model="slideToggleActiveInactve" disable-triggers-on-init&gt;&lt;slide-toggle&gt;</pre>
+            <p>Note: The use of <code>disable-triggers-on-init</code> here prevents the triggers from being executed when the page loads.</p>
         </div>
         <div class="col-md-3">
             Status: {{ slideToggleMethodStatus }}<br/>
-            <slide-toggle on="setActive" off="setInactive" ng-model="slideToggleMethods"></slide-toggle>
+            <slide-toggle on="setActive" off="setInactive" ng-model="slideToggleMethods" disable-triggers-on-init></slide-toggle>
         </div>
     </div>
 </div>

@@ -10,7 +10,7 @@ This directive gives developers a fancy way to present users with a yes or no ch
 
 * `on-label` - Text to display when `ng-model` is true (Defaults to "On")
 * `off-label` - Text to display when `ng-model` is false (Defaults to "Off")
-* `disable-triggers-on-watch` - When `ng-model` changes, don't trigger the on/off expressions
+* `disable-triggers-on-init` - When `ng-model` b, don't trigger the on/off expressions
 
 ### Notes
 

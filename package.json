@@ -1,6 +1,6 @@
 {
   "name": "angular-form-ui",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "homepage": "http://bkuhl.github.io/angular-form-ui/",
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
-    "matchdep": "~0.1.2",
+    "matchdep": "~0.3.0",
     "karma": "~0.10.2",
     "grunt-karma": "~0.6.2",
     "grunt-contrib-jshint": "~0.6.3",

@@ -12,12 +12,12 @@
 }
 .ngSlideToggle > .stSlide {
     transition: all 0.2s ease-in-out;
+    white-space: nowrap;
 }
 .stSlide > .stOff,
 .stSlide > .stOn,
 .stSlide > .stHandle {
-    display: block;
-    float: left;
+    display: inline-block;
     font-family: Arial, Helvetica, sans-serif;
     line-height: 22px;
     font-size: 12px;
@@ -36,7 +36,7 @@
     text-shadow: 0 1px #808080;
 }
 .stSlide > .stHandle {
-    padding: 2px 1px 2px 0;
+    padding: 4px 1px;
     min-width: 25px;
     background: #fdfdfd; /* Old browsers */
     background: -o-linear-gradient(top,  #fdfdfd 0%,#ebebeb 100%); /* Opera 11.10+ */
@@ -47,6 +47,8 @@
     color: #c6c6c6;
     letter-spacing: -1px;
     text-align: center;
+    font-size: 11px;
+    line-height: 18px;
 }
 .stSlide > .stOn {
     background: #8ab056; /* Old browsers */
