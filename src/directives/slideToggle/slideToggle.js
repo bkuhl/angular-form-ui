@@ -130,7 +130,7 @@ angular.module('angular-form-ui').
                             off(disableTriggersOnInit);
                         }
                     });
-                }, 0);
+                });
             }
         };
     }]);
