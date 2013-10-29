@@ -5,7 +5,7 @@
 
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
 
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.3/angular.min.js"></script>
     <script src="../../angular-form-ui.js"></script>
     <script src="busyButton.js"></script>
     <script type="text/javascript">
@@ -20,22 +20,9 @@
                 }, 2000);
                 return deferred.promise;
             }
-            $scope.saveNoPromise = function () {
-                $timeout(function () {
-                    $scope.busy = false;
-                }, 2000);
-            }
         }).
 
         controller('NoPromiseExampleController', function ($scope, $timeout, $q) {
-            $scope.save = function () {
-                var deferred = $q.defer();
-                $timeout(function () {
-                    //do something here
-                    deferred.resolve();
-                }, 2000);
-                return deferred.promise;
-            }
             $scope.saveNoPromise = function () {
                 $timeout(function () {
                     $scope.busy = false;
@@ -53,7 +40,7 @@
     <div class="row">
         <div class="col-md-12">
             <h3 class='directive'>busyButton</h3>
-            <p>Handling of the "busy" status of a form button, communicating to the user the system is "working" and won't process additional <code>ng-click</code> events.  "busy" state is determined by <code>$scope.isBusy()</code> which refers to <code>$scope.busy</code></p>
+            <p>Handling of the "busy" status of a form button, communicating to the user the system is "working" and won't process additional <code>ng-click</code> events.  "busy" state is determined by <code>$scope.isBusy()</code> which refers to <code>$scope.busy</code>.</p>
         </div>
     </div>
     <div class="row" ng-controller="PromiseExampleController">
@@ -80,6 +67,8 @@ controller('ExampleController', function ($scope, $timeout, $q) {
             <button busy-button busy-text="Saving..." ng-click="save()">Save</button>
         </div>
     </div>
+
+
     <div class="row" ng-controller="NoPromiseExampleController">
         <div class="col-md-12">
             <h3>Without promises</h3>
@@ -95,7 +84,7 @@ controller('ExampleController', function ($scope, $timeout, $q) {
 });
 
 //html
-&lt;button busy-button busy-text="Saving..." ng-click="save()"&gt;&lt;/button&gt;</pre>
+&lt;button busy-button busy-text="Saving..." ng-click="saveNoPromise()"&gt;&lt;/button&gt;</pre>
         </div>
         <div class="col-md-3">
             <button busy-button busy-text="Saving..." ng-click="saveNoPromise()">Save</button>
