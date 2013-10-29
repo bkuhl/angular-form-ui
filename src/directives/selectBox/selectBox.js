@@ -1,10 +1,10 @@
 angular.module('angular-form-ui').
     /**
-     * <select-box ng-model="model.property" options="models" optExp="t.name for t in options"></select-box>
+     * <select-box ng-model="model.property" options="models" opt-exp="t.name for t in options"></select-box>
      * Required attribute: ng-model="[expression]"
-     * Required attribute: optExp="[comprehension_expression]"
+     * Required attribute: opt-exp="[comprehension_expression]"
      * Optional attribute: name="xxxx"
-     * Optional attribute: defaultLabel="xxxx" (used if ng-model is undefined or null)
+     * Optional attribute: label="xxxx" (used if ng-model is undefined or null)
      */
     directive('selectBox', function () {
         return {
@@ -12,15 +12,15 @@ angular.module('angular-form-ui').
             restrict: 'E',
             scope: false,
             template: function (el, attrs) {
-                if (!angular.isDefined(attrs.defaultlabel)) {
-                    attrs.defaultlabel = "";
+                if (!angular.isDefined(attrs.label)) {
+                    attrs.label = "";
                 }
-                if (!angular.isDefined(attrs.optexp)) {
+                if (!angular.isDefined(attrs.optExp)) {
                     throw new Error("A comprehension expression must be defined with the attribute optExp for selectBox");
                 }
                 var html = '<div class="ngSelectBox' + ((angular.isDefined(attrs.class)) ? ' ' + attrs.class : '') + '">'+
-                    '<span>{{ "' + attrs.defaultlabel + '" }}</span>'+
-                        '<select ng-model="' + attrs.ngModel + '" ng-options="' + attrs.optexp + '"' + ((attrs.required) ? ' required' : '') + '' + ((angular.isDefined(attrs.id)) ? ' id="'+attrs.id+'"' : '') + '' + ((attrs.name) ? ' name="' + attrs.name + '"' : '') + '></select>'+
+                    '<span>{{ "' + attrs.label + '" }}</span>'+
+                        '<select ng-model="' + attrs.ngModel + '" ng-options="' + attrs.optExp + '"' + ((attrs.required) ? ' required' : '') + '' + ((angular.isDefined(attrs.id)) ? ' id="'+attrs.id+'"' : '') + '' + ((attrs.name) ? ' name="' + attrs.name + '"' : '') + '></select>'+
                     '</div>';
                 return html;
             },
