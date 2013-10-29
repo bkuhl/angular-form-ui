@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="form-ui-examples">
+<head>
+    <title>angular-form-ui Examples</title>
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="checkBox.css" rel="stylesheet">
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.3/angular.min.js"></script>
+    <script src="../../angular-form-ui.js"></script>
+    <script src="checkBox.js"></script>
+    <script type="text/javascript">
+        angular.module('form-ui-examples', ['angular-form-ui']).
+
+        controller('ExampleController', function ($scope, $timeout, $q) {
+            $scope.checked = true;
+            $scope.colors = ['Blue', 'Orange', 'Yellow', 'Purple'];
+            $scope.favoriteColors = {
+                value: [$scope.colors[1]]
+            };
+            $scope.$watch('favoriteColors', function (newValue) {
+                console.log('example-favoriteColors', newValue);
+            });
+            $scope.$watch('checked', function (newValue) {
+                console.log('example-checked', newValue);
+            });
+        });
+    </script>
+    <style type="text/css">
+        .divider { height: 40px; }
+        .directive:not(.first) { margin-top: 2em;}
+    </style>
+</head>
+<body>
+<div class='container' ng-controller="ExampleController">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class='directive'>checkBox</h3>
+            <p></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Standalone checkbox</h3>
+        </div>
+        <div class="col-md-9 highlight">
+            <pre></pre>
+        </div>
+        <div class="col-md-3">
+            <check-box ng-model="checked"></check-box>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Checkbox lists</h3>
+        </div>
+        <div class="col-md-9 highlight">
+            <pre></pre>
+        </div>
+        <div class="col-md-3">
+            <div ng-repeat="color in colors"><label><check-box ng-model="favoriteColors.value" value="color"></check-box>{{ color }}</label></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
