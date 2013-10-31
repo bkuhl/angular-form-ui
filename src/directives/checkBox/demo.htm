@@ -15,12 +15,10 @@
         controller('ExampleController', function ($scope, $timeout, $q) {
             $scope.checked = true;
             $scope.colors = ['Blue', 'Orange', 'Yellow', 'Purple'];
-            $scope.favoriteColors = {
-                value: [$scope.colors[1]]
-            };
+            $scope.favoriteColors = ['Orange'];
             $scope.$watch('favoriteColors', function (newValue) {
                 console.log('example-favoriteColors', newValue);
-            });
+            }, true);
             $scope.$watch('checked', function (newValue) {
                 console.log('example-checked', newValue);
             });
@@ -58,7 +56,7 @@
             <pre></pre>
         </div>
         <div class="col-md-3">
-            <div ng-repeat="color in colors"><label><check-box ng-model="favoriteColors.value" value="color"></check-box>{{ color }}</label></div>
+            <div ng-repeat="color in colors"><label><check-box ng-model="favoriteColors" value="color"></check-box>{{ color }}</label></div>
         </div>
     </div>
 </div>
