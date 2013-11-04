@@ -1,0 +1,40 @@
+<h1>checkBox <a class='btn btn-default docLink' target='_blank' href='https://github.com/bkuhl/angular-form-ui/tree/master/src/directives/checkBox'>Go to documentation</a></h1>
+<div class="row">
+    <div class="col col-lg-6">
+        <p>This directive gives developers a fancy way to present users with a yes or no choice.</p>
+        <label><check-box ng-model="booleanValue"></check-box> Click Me!</label>
+    </div>
+    <div class="col col-lg-6">
+        <h3>Javascript</h3>
+<pre class="prettyprint nocode">
+$scope.checked = true;
+</pre>
+        <h3>HTML</h3>
+<pre class="prettyprint nocode">
+&lt;check-box ng-model="booleanValue"&gt;&lt;check-box&gt;
+</pre>
+    </div>
+</div>
+<h2>Arrays</h2>
+<div class="row">
+    <div class="col col-lg-6">
+        <p>When working with arrays, check-box has you covered.  As you check items an array will be populated with the appropriate values.</p>
+        <div ng-repeat="color in colors"><label><check-box ng-model="favoriteColors" value="color"></check-box>{{ color }}</label></div>
+        <br/>
+        {{ favoriteColors }}
+    </div>
+    <div class="col col-lg-6">
+        <h3>Javascript</h3>
+<pre class="prettyprint nocode">
+$scope.colors = ['Blue', 'Orange', 'Yellow', 'Purple'];
+$scope.favoriteColors = ['Orange'];
+</pre>
+        <h3>HTML</h3>
+<pre class="prettyprint nocode">
+&lt;div ng-repeat="color in colors"&gt;
+    &lt;label&gt;&lt;check-box ng-model="favoriteColors" value="color"&gt;&lt;/check-box&gt; {{ color }}&lt;/label&gt;
+&lt;/div&gt;
+</pre>
+    </div>
+</div>
+<div disqus="'directives-check-box'"></div>

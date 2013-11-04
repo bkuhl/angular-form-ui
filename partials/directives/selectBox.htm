@@ -3,7 +3,7 @@
     <div class="col col-lg-6">
         <p>This directive gives developers a fancy way to present select boxes.</p>
         <div style="background-color: {{ selectedValue.hexCode }}; color: #fff; text-align: center; padding: 2px">{{ selectedValue.hexCode }}</div><br/>
-        <select-box ng-model="selectedValue" optExp="t.name for t in options"></select-box>
+        <select-box ng-model="selectedValue" opt-exp="t.name for t in options"></select-box>
     </div>
     <div class="col col-lg-6">
         <h3>Javascript</h3>
@@ -24,7 +24,7 @@ controller('ExampleController', function ($scope) {
 </pre>
         <h3>HTML</h3>
 <pre class="prettyprint nocode">
-&lt;select-box ng-model="selectedValue" optExp="t.name for t in options"&gt;&lt;/select-box&gt;
+&lt;select-box ng-model="selectedValue" opt-exp="t.name for t in options"&gt;&lt;/select-box&gt;
 </pre>
     </div>
 </div>

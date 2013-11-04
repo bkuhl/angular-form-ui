@@ -22,7 +22,8 @@
     <link rel="stylesheet" href="css/prettify.css">
     <link rel="stylesheet" href="css/docs.css">
     <link href="https://rawgithub.com/bkuhl/angular-form-ui/master/release/angular-form-ui.css" rel="stylesheet">
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.3/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.3/angular-route.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="js/angular-disqus.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -42,6 +43,7 @@
                         <li><a href="#!/busy-button/">busyButton</a></li>
                         <li class="nav-header">Elements</li>
                         <li><a href="#!/slide-toggle/">slideToggle</a></li>
+                        <li><a href="#!/check-box/">checkBox</a></li>
                         <li><a href="#!/select-box/">selectBox</a></li>
                     </ul>
                 </li>
@@ -78,7 +80,7 @@
     </ul>
 </footer>
 <script>
-    var app = angular.module('angular-form-ui-pages', ['angular-form-ui', 'ngDisqus'])
+    var app = angular.module('angular-form-ui-pages', ['ngRoute', 'angular-form-ui', 'ngDisqus'])
             .config(function($routeProvider, $locationProvider, $disqusProvider){
                 $disqusProvider.setShortname("angular-form-ui");
                 $locationProvider.html5Mode(false).hashPrefix('!');
@@ -108,6 +110,13 @@
                             controller: function ($scope) {
                                 $scope.slideToggleOnOff = true;
                                 $scope.slideToggleActiveInactve = true;
+                                $scope.slideToggleTrigger = false;
+                                $scope.onTrigger = function () {
+                                    alert('On');
+                                }
+                                $scope.offTrigger = function () {
+                                    alert('On');
+                                }
                             }
                         })
                         .when('/busy-button', {
@@ -121,6 +130,14 @@
                                     }, 2000);
                                     return deferred.promise;
                                 }
+                            }
+                        })
+                        .when('/check-box', {
+                            templateUrl: 'partials/directives/checkBox.htm',
+                            controller: function ($scope) {
+                                $scope.checked = true;
+                                $scope.colors = ['Blue', 'Orange', 'Yellow', 'Purple'];
+                                $scope.favoriteColors = ['Orange'];
                             }
                         })
                         .otherwise({ redirectTo: '/' })
