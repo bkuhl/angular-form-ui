@@ -6,7 +6,7 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="selectBox.css" rel="stylesheet">
 
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.3/angular.min.js"></script>
     <script src="../../angular-form-ui.js"></script>
     <script src="selectBox.js"></script>
     <script type="text/javascript">
@@ -57,21 +57,21 @@ controller('ExampleController', function ($scope) {
 });
 
 //html
-&lt;select-box ng-model="selectedValue" optExp="t.name for t in options"&gt;&lt;/select-box&gt;</pre>
+&lt;select-box ng-model="selectedValue" opt-exp="t.name for t in options"&gt;&lt;/select-box&gt;</pre>
         </div>
         <div class="col-md-3">
             <div style="background-color: {{ selectedValue.hexCode }}; color: #fff; text-align: center; padding: 2px">{{ selectedValue.hexCode }}</div><br/>
-            <select-box ng-model="selectedValue" optExp="t.name for t in options"></select-box>
+            <select-box ng-model="selectedValue" opt-exp="t.name for t in options"></select-box>
         </div>
     </div>
     <div class="divider"></div>
     <div class="row">
         <div class="col-md-9">
-            <p>You can use the <code>defaultLabel</code> attribute to define a default label before any values are selected</p>
-            <pre>&lt;select-box ng-model="selectedValue" optExp="t.name for t in options" defaultLabel="Select One"&gt;&lt;/select-box&gt;</pre>
+            <p>You can use the <code>label</code> attribute to define a default label before any values are selected</p>
+            <pre>&lt;select-box ng-model="selectedValue" opt-exp="t.name for t in options" label="Select One"&gt;&lt;/select-box&gt;</pre>
         </div>
         <div class="col-md-3">
-            <select-box ng-model="selectedValue" optExp="t.name for t in options" defaultLabel="Select One"></select-box>
+            <select-box ng-model="selectedValue" opt-exp="t.name for t in options" label="Select One"></select-box>
         </div>
     </div>
 </div>

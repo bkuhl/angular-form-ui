@@ -7,7 +7,8 @@ angular.module('angular-form-ui').
     directive('busyButton', function () {
         return {
             restrict: 'A',
-            controller: ['$scope', '$element', function ($scope, $element) {
+            priority: -100,
+            controller: ['$scope', function ($scope) {
                 $scope.busy = false;
                 $scope.isBusy = function () {
                     return $scope.busy;
@@ -15,8 +16,9 @@ angular.module('angular-form-ui').
             }],
             link: function (scope, el, attrs) {
                 //with click events, handle "busy" status
-                var functionName = "callback"+Math.floor(Math.random() * 10001),
+                var functionName = "cb"+Math.floor(Math.random() * 10001),
                     onClick = attrs.ngClick;
+
                 //wrap onClick so we can enable "busy" status
                 scope[functionName] = function () {
                     //if it's already busy, don't accept a new click
@@ -33,7 +35,9 @@ angular.module('angular-form-ui').
                     }
                 };
 
+                //handle busy button that uses ngClick
                 if (angular.isDefined(attrs.ngClick)) {
+                    //by using ngClick instead of .bind(), we're leaving garbage collection up to Angular
                     attrs.$set('ngClick', functionName + '()');
                 }
 
@@ -46,9 +50,9 @@ angular.module('angular-form-ui').
                 scope.$watch('isBusy()', function (newValue) {
                     //add/remove disabled class when no additional clicks are accepted
                     if (newValue === true) {
-                        el.addClass('disabled');
+                        el.addClass('busy');
                     } else {
-                        el.removeClass('disabled');
+                        el.removeClass('busy');
                     }
 
                     //update the text

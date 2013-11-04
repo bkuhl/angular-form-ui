@@ -1,4 +1,40 @@
-/*! angular-form-ui v0.3.0 | https://github.com/bkuhl/angular-form-ui */
+/*! angular-form-ui v0.4.0 | https://github.com/bkuhl/angular-form-ui */
+.ngCheckBox {
+    width: 16px;
+    height: 16px;
+    position: relative;
+    display: -moz-inline-box;
+    display: block;
+    vertical-align: middle;
+    zoom: 1;
+    float: left;
+    margin-top: 3px;
+    margin-right: 8px;
+
+    box-shadow: 0 1px 0 #fff;
+    -webkit-box-shadow: 0 1px 0 #fff;
+    -moz-box-shadow: 0 1px 0 #fff;
+}
+.ngCheckBox > span {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYxIDY0LjE0MDk0OSwgMjAxMC8xMi8wNy0xMDo1NzowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNS4xIFdpbmRvd3MiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RDU3QTUzMUMzRkRFMTFFM0E0MjRBRjQxM0RFQTAwMDUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RDU3QTUzMUQzRkRFMTFFM0E0MjRBRjQxM0RFQTAwMDUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpENTdBNTMxQTNGREUxMUUzQTQyNEFGNDEzREVBMDAwNSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpENTdBNTMxQjNGREUxMUUzQTQyNEFGNDEzREVBMDAwNSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PmHchAcAAACZSURBVHjaYjx58qQJAwNDIRDrMJAGrgBxP8v///871dXVjQSAgBTdHz58kLt586YEyAARHh4egV+/fpFkPUgPSC/Tv3//GECYVADTx0SOZmRDQF5gAGFyAEgfC8gUcg0Au4AqBpAbDtRzwcB6gSrRSGkgvnr//v0nfn5+PlI0f/z48RNIL8gLDVeuXGkCiomQ6IA3QNwAEGAAiNSSGb6Ts5QAAAAASUVORK5CYII=) no-repeat 0 0;
+    height: 16px;
+    width: 16px;
+    display: -moz-inline-box;
+    display: inline-block;
+    text-align: center;
+}
+.ngCheckBox > span.checked {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYxIDY0LjE0MDk0OSwgMjAxMC8xMi8wNy0xMDo1NzowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNS4xIFdpbmRvd3MiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RTA3MUMzQzkzRkRFMTFFMzg0NjBDRDY5MEFGQkRCRTIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RTA3MUMzQ0EzRkRFMTFFMzg0NjBDRDY5MEFGQkRCRTIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpFMDcxQzNDNzNGREUxMUUzODQ2MENENjkwQUZCREJFMiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFMDcxQzNDODNGREUxMUUzODQ2MENENjkwQUZCREJFMiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pmia9YUAAAGDSURBVHjalFM9i8JAEH0XJFroeUiqIKaxULgyteA/sLbQOo0QEG3lSpvrlDS2Klb5AWdn0MbGCOJPOA4uBgu/73b2SIhyKHnwYJndNzNvd/ZpNpupAHTGV4SDzfiO6XT68c3wExKkIW2EraV4PP5yOBxClScNaYXL5QJiWHg6Iax4Pp+j0+n4ScgCiI+w3W4xGAywXC5RqVTg6SKU5VGCxWKBfr+P/X4PTdOQy+VwPp//OniUwLIsjEYjRKNR6LqOTCaD0+nkW/AvcTwewzAMuK6LYGw4HEIQBNRqNaTTaRyPR3/fT0AdiKKI1WqFdruN9XqNyWQC0zR5pXK5DFmWeWXPO/HKQqFQQCqVQq/XQ7fb5VUJxWIRqqryyv89pW9ht9shn8+jXq8jkUjwWDabRalU4pcXbPvKQrAlmkZJktBoNKAoCqrVKhcHz9wycjuJtI7FYmg2m/zt7w2adwef7F+4yWTyObjhOM7d2dhsNi5paRJbtm2/sZgU8jt8MbZ+BRgAHINwD/O93OIAAAAASUVORK5CYII=);
+}
+.ngCheckBox input {
+    margin: 0;
+    width: 16px;
+    height: 16px;
+    opacity: 0;
+    filter: alpha(opacity:0);
+    display: inline-block;
+    background: none;
+}
 .ngSelectBox {
     display: -moz-inline-box;
     display: inline-block;

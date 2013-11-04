@@ -6,7 +6,7 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="slideToggle.css" rel="stylesheet">
 
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.3/angular.min.js"></script>
     <script src="../../angular-form-ui.js"></script>
     <script src="slideToggle.js"></script>
     <script type="text/javascript">
@@ -43,7 +43,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-9 highlight">
+        <div class="col-md-9 highlight ng-non-bindable">
             <pre>&lt;slide-toggle ng-model="slideToggleOnOff"&gt;&lt;slide-toggle&gt;</pre>
         </div>
         <div class="col-md-3">
@@ -53,7 +53,7 @@
     </div>
     <div class="divider"></div>
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-9 ng-non-bindable">
             <p>You can use the <code>on-label</code> and <code>offLabel</code> attributes to modify the text displayed for each option</p>
             <pre>&lt;slide-toggle on-label="Active" offLabel="Inactive" ng-model="slideToggleActiveInactve"&gt;&lt;slide-toggle&gt;</pre>
         </div>
@@ -64,7 +64,7 @@
     </div>
     <div class="divider"></div>
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-9 ng-non-bindable">
             <p>You can use the <code>on</code> and <code>off</code> attributes to execute scope methods when the slider enters that state.  This is useful for times where you need more functionality than simply toggling a value.</p>
             <pre>&lt;slide-toggle on="Active" off="Inactive" ng-model="slideToggleActiveInactve" disable-triggers-on-init&gt;&lt;slide-toggle&gt;</pre>
             <p>Note: The use of <code>disable-triggers-on-init</code> here prevents the triggers from being executed when the page loads.</p>
