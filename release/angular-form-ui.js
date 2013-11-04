@@ -1,4 +1,4 @@
-/*! angular-form-ui v0.3.1 | https://github.com/bkuhl/angular-form-ui */
+/*! angular-form-ui v0.4.0 | https://github.com/bkuhl/angular-form-ui */
 /*global angular */
 
 angular.module('angular-form-ui', []);
