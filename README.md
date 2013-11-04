@@ -2,6 +2,7 @@
 > Make your forms beautiful
 
 Current version: 0.4.0
+
 Requires: AngularJS 1.1.5+
 
 ## Features
