@@ -12,13 +12,14 @@ angular.module('angular-form-ui').
                 'externalValue': '=ngModel',
                 'value': '&'
             },
-            template:
-                '<div class="ngCheckBox">'+
+            template: function (el, attrs) {
+                var html = '<div class="ngCheckBox' + ((angular.isDefined(attrs.class)) ? ' class="'+attrs.class+'"' : '') + '">'+
                     '<span ng-class="{checked: isChecked}">' +
-                        '<input type="checkbox" ng-model="isChecked"/>'+
+                        '<input type="checkbox" ng-model="isChecked"' + ((angular.isDefined(attrs.id)) ? ' id="'+attrs.id+'"' : '') + '' + ((angular.isDefined(attrs.name)) ? ' name="'+attrs.name+'"' : '') + '' + ((angular.isDefined(attrs.required)) ? ' name="'+attrs.required+'"' : '') + '/>'+
                     '</span>'+
-                '</div>'
-            ,
+                '</div>';
+                return html;
+            },
             controller: ['$scope', function ($scope) {
                 if (angular.isArray($scope.externalValue)) {
                     $scope.isChecked = $scope.externalValue.indexOf($scope.value()) >= 0;
@@ -45,9 +46,3 @@ angular.module('angular-form-ui').
             }]
         };
     });
-
-tApp.directive("enter", function () {
-    return {
-        scope: false
-    };
-})

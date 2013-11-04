@@ -16,12 +16,6 @@
             $scope.checked = true;
             $scope.colors = ['Blue', 'Orange', 'Yellow', 'Purple'];
             $scope.favoriteColors = ['Orange'];
-            $scope.$watch('favoriteColors', function (newValue) {
-                console.log('example-favoriteColors', newValue);
-            }, true);
-            $scope.$watch('checked', function (newValue) {
-                console.log('example-checked', newValue);
-            });
         });
     </script>
     <style type="text/css">
@@ -34,15 +28,14 @@
     <div class="row">
         <div class="col-md-12">
             <h3 class='directive'>checkBox</h3>
-            <p></p>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <h3>Standalone checkbox</h3>
+            <p>Use a stand alone checkbox for a single value</p>
         </div>
-        <div class="col-md-9 highlight">
-            <pre></pre>
+        <div class="col-md-9 highlight ng-non-bindable">
+            <pre>&lt;check-box ng-model="checked"&gt;&lt;/check-box&gt;</pre>
         </div>
         <div class="col-md-3">
             <check-box ng-model="checked"></check-box>
@@ -51,11 +44,24 @@
     <div class="row">
         <div class="col-md-12">
             <h3>Checkbox lists</h3>
+            <p>For multiple items, an array of strings or objects can be populated</p>
         </div>
-        <div class="col-md-9 highlight">
-            <pre></pre>
+        <div class="col-md-9 highlight ng-non-bindable">
+            <pre>//javascript
+controller('ExampleController', function ($scope, $timeout, $q) {
+    $scope.colors = ['Blue', 'Orange', 'Yellow', 'Purple'];
+    $scope.favoriteColors = ['Orange'];
+});
+
+//html
+&lt;div ng-repeat="color in colors"&gt;
+    &lt;label&gt;
+        &lt;check-box ng-model="favoriteColors" value="color"&gt;&lt;/check-box&gt; {{ color }}
+    &lt;/label&gt;
+&lt;/div&gt;</pre>
         </div>
         <div class="col-md-3">
+            {{ favoriteColors }}
             <div ng-repeat="color in colors"><label><check-box ng-model="favoriteColors" value="color"></check-box>{{ color }}</label></div>
         </div>
     </div>

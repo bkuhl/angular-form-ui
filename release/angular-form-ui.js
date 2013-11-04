@@ -1,4 +1,4 @@
-/*! angular-form-ui v0.3.0 | https://github.com/bkuhl/angular-form-ui */
+/*! angular-form-ui v0.3.1 | https://github.com/bkuhl/angular-form-ui */
 /*global angular */
 
 angular.module('angular-form-ui', []);
@@ -11,7 +11,8 @@ angular.module('angular-form-ui').
     directive('busyButton', function () {
         return {
             restrict: 'A',
-            controller: ['$scope', '$element', function ($scope, $element) {
+            priority: -100,
+            controller: ['$scope', function ($scope) {
                 $scope.busy = false;
                 $scope.isBusy = function () {
                     return $scope.busy;
@@ -19,8 +20,9 @@ angular.module('angular-form-ui').
             }],
             link: function (scope, el, attrs) {
                 //with click events, handle "busy" status
-                var functionName = "callback"+Math.floor(Math.random() * 10001),
+                var functionName = "cb"+Math.floor(Math.random() * 10001),
                     onClick = attrs.ngClick;
+
                 //wrap onClick so we can enable "busy" status
                 scope[functionName] = function () {
                     //if it's already busy, don't accept a new click
@@ -37,7 +39,9 @@ angular.module('angular-form-ui').
                     }
                 };
 
+                //handle busy button that uses ngClick
                 if (angular.isDefined(attrs.ngClick)) {
+                    //by using ngClick instead of .bind(), we're leaving garbage collection up to Angular
                     attrs.$set('ngClick', functionName + '()');
                 }
 
@@ -50,9 +54,9 @@ angular.module('angular-form-ui').
                 scope.$watch('isBusy()', function (newValue) {
                     //add/remove disabled class when no additional clicks are accepted
                     if (newValue === true) {
-                        el.addClass('disabled');
+                        el.addClass('busy');
                     } else {
-                        el.removeClass('disabled');
+                        el.removeClass('busy');
                     }
 
                     //update the text
@@ -70,6 +74,54 @@ angular.module('angular-form-ui').
     });
 angular.module('angular-form-ui').
     /**
+     * <check-box ng-model="isChecked()"></check-box>
+     * Required attribute: ng-model="[expression]"
+     * Optional attribute: value="[expression]"
+     */
+    directive('checkBox', function () {
+        return {
+            replace: true,
+            restrict: 'E',
+            scope: {
+                'externalValue': '=ngModel',
+                'value': '&'
+            },
+            template: function (el, attrs) {
+                var html = '<div class="ngCheckBox' + ((angular.isDefined(attrs.class)) ? ' class="'+attrs.class+'"' : '') + '">'+
+                    '<span ng-class="{checked: isChecked}">' +
+                        '<input type="checkbox" ng-model="isChecked"' + ((angular.isDefined(attrs.id)) ? ' id="'+attrs.id+'"' : '') + '' + ((angular.isDefined(attrs.name)) ? ' name="'+attrs.name+'"' : '') + '' + ((angular.isDefined(attrs.required)) ? ' name="'+attrs.required+'"' : '') + '/>'+
+                    '</span>'+
+                '</div>';
+                return html;
+            },
+            controller: ['$scope', function ($scope) {
+                if (angular.isArray($scope.externalValue)) {
+                    $scope.isChecked = $scope.externalValue.indexOf($scope.value()) >= 0;
+                } else {
+                    $scope.isChecked = !!$scope.externalValue;
+                }
+
+                $scope.$watch('isChecked', function (newValue, oldValue) {
+                    if (angular.isDefined(newValue) && angular.isDefined(oldValue)) {
+                        //add or remove items if this is an array
+                        if (angular.isArray($scope.externalValue)) {
+                            var index = $scope.externalValue.indexOf($scope.value());
+                            if(newValue) {
+                                if( index < 0 ) $scope.externalValue.push($scope.value());
+                            } else {
+                                if( index >= 0 ) $scope.externalValue.splice(index, 1);
+                            }
+                        } else {
+                            //simple boolean value
+                            $scope.externalValue = newValue;
+                        }
+                    }
+                });
+            }]
+        };
+    });
+angular.module('angular-form-ui').
+    /**
      * <input focus-me/>
      */
     directive('focusMe', ['$timeout', function ($timeout) {
@@ -83,11 +135,11 @@ angular.module('angular-form-ui').
     }]);
 angular.module('angular-form-ui').
     /**
-     * <select-box ng-model="model.property" options="models" optExp="t.name for t in options"></select-box>
+     * <select-box ng-model="model.property" options="models" opt-exp="t.name for t in options"></select-box>
      * Required attribute: ng-model="[expression]"
-     * Required attribute: optExp="[comprehension_expression]"
+     * Required attribute: opt-exp="[comprehension_expression]"
      * Optional attribute: name="xxxx"
-     * Optional attribute: defaultLabel="xxxx" (used if ng-model is undefined or null)
+     * Optional attribute: label="xxxx" (used if ng-model is undefined or null)
      */
     directive('selectBox', function () {
         return {
@@ -95,15 +147,15 @@ angular.module('angular-form-ui').
             restrict: 'E',
             scope: false,
             template: function (el, attrs) {
-                if (!angular.isDefined(attrs.defaultlabel)) {
-                    attrs.defaultlabel = "";
+                if (!angular.isDefined(attrs.label)) {
+                    attrs.label = "";
                 }
-                if (!angular.isDefined(attrs.optexp)) {
+                if (!angular.isDefined(attrs.optExp)) {
                     throw new Error("A comprehension expression must be defined with the attribute optExp for selectBox");
                 }
                 var html = '<div class="ngSelectBox' + ((angular.isDefined(attrs.class)) ? ' ' + attrs.class : '') + '">'+
-                    '<span>{{ "' + attrs.defaultlabel + '" }}</span>'+
-                        '<select ng-model="' + attrs.ngModel + '" ng-options="' + attrs.optexp + '"' + ((attrs.required) ? ' required' : '') + '' + ((angular.isDefined(attrs.id)) ? ' id="'+attrs.id+'"' : '') + '' + ((attrs.name) ? ' name="' + attrs.name + '"' : '') + '></select>'+
+                    '<span>{{ "' + attrs.label + '" }}</span>'+
+                        '<select ng-model="' + attrs.ngModel + '" ng-options="' + attrs.optExp + '"' + ((attrs.required) ? ' required' : '') + '' + ((angular.isDefined(attrs.id)) ? ' id="'+attrs.id+'"' : '') + '' + ((attrs.name) ? ' name="' + attrs.name + '"' : '') + '></select>'+
                     '</div>';
                 return html;
             },
@@ -250,7 +302,7 @@ angular.module('angular-form-ui').
                             off(disableTriggersOnInit);
                         }
                     });
-                }, 0);
+                });
             }
         };
     }]);

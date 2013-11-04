@@ -22,7 +22,7 @@ describe('selectBox', function () {
 
     it("should have a root element with the class ngSelectBox", function () {
         $rootScope.options = [1, 2, 3, 4];
-        var element = $compile("<select-box ng-model='myVar' optExp='t for t in options'></select-box>")($rootScope);
+        var element = $compile("<select-box ng-model='myVar' opt-exp='t for t in options'></select-box>")($rootScope);
         $rootScope.$digest();
         expect(element.hasClass("ngSelectBox")).toBe(true);
     });

@@ -16,6 +16,15 @@ module.exports = function(grunt) {
                 dest: 'release/<%= pkg.name %>.css'
             }
         },
+        cssmin: {
+            minify: {
+                expand: true,
+                cwd: 'release/',
+                src: ['*.css', '!*.min.css'],
+                dest: 'release/',
+                ext: '.min.css'
+            }
+        },
         uglify: {
             options: {
                 report: 'min',
@@ -58,7 +67,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
 
-    grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'copy']);
-    grunt.registerTask('test', ['jshint', 'concat', 'uglify', 'copy', 'karma']);
+    grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'copy', 'cssmin']);
+    grunt.registerTask('test', ['jshint', 'concat', 'uglify', 'copy', 'cssmin', 'karma']);
 };
