@@ -1,7 +1,7 @@
 #angular-form-ui  [![Build Status](https://travis-ci.org/bkuhl/angular-form-ui.png?branch=master)](https://travis-ci.org/bkuhl/angular-form-ui)
 > Make your forms beautiful
 
-Current version: 0.4.0
+Current version: 0.4.1
 
 Requires: AngularJS 1.1.5+
 

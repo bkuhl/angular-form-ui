@@ -3,8 +3,8 @@ files = [
     JASMINE,
     JASMINE_ADAPTER,
 
-    'https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js',
-    'http://code.angularjs.org/1.1.5/angular-mocks.js',
+    'https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js',
+    'http://code.angularjs.org/1.2.9/angular-mocks.js',
 
     // The library itself
     'release/angular-form-ui.js',
