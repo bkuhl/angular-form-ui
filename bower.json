@@ -1,8 +1,8 @@
 {
     "name": "angular-form-ui",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "main": "./dist/*",
     "dependencies": {
-        "angular": ">= 1.1.5"
+        "angular": ">= 1.2.9"
     }
 }

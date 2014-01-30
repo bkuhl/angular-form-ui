@@ -1,4 +1,4 @@
-/*! angular-form-ui v0.4.0 | https://github.com/bkuhl/angular-form-ui */
+/*! angular-form-ui v0.4.1 | https://github.com/bkuhl/angular-form-ui */
 .ngCheckBox {
     width: 16px;
     height: 16px;
@@ -110,6 +110,8 @@
 }
 .ngSlideToggle * {
     box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
 }
 .ngSlideToggle > input[type=checkbox] {
     display: none;
