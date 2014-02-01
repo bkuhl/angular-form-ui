@@ -15,6 +15,13 @@ Requires: AngularJS 1.1.5+
 
 View Examples: http://bkuhl.github.io/angular-form-ui/
 
+## Browser Support
+
+* Chrome
+* Firefox
+* IE10+
+* IE9 (only `selectBox` directive does not work)
+
 ## Roadmap
 
 * Add ability for focusMe to be triggered based on conditions so it can be used with directives like ng-show
