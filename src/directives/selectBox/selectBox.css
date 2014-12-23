@@ -57,7 +57,7 @@
     width: 100%;
 
     opacity: 0;
-    filter: alpha(opacity:0);
+    filter: alpha(opacity=0);
 
     border: none;
     background: none;
