@@ -1,7 +1,7 @@
 #angular-form-ui  [![Build Status](https://travis-ci.org/bkuhl/angular-form-ui.png?branch=master)](https://travis-ci.org/bkuhl/angular-form-ui)
 > Make your forms beautiful
 
-NOTE: This project is no longer actively developed.  Feel free to pork or submit PRS.
+NOTE: This project is no longer actively developed.  Feel free to Fork or submit a pull request.
 
 Current version: 0.4.1
 
