@@ -1,6 +1,8 @@
 #angular-form-ui  [![Build Status](https://travis-ci.org/bkuhl/angular-form-ui.png?branch=master)](https://travis-ci.org/bkuhl/angular-form-ui)
 > Make your forms beautiful
 
+NOTE: This project is no longer actively developed.  Feel free to pork or submit PRS.
+
 Current version: 0.4.1
 
 Requires: AngularJS 1.1.5+
@@ -21,10 +23,6 @@ View Examples: http://bkuhl.github.io/angular-form-ui/
 * Firefox
 * IE10+
 * IE9 (only `selectBox` directive does not work)
-
-## Roadmap
-
-* Add ability for focusMe to be triggered based on conditions so it can be used with directives like ng-show
 
 ## Bug tracker
 
